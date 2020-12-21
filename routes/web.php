@@ -15,8 +15,14 @@ Route::get('/dashboard', function () {
     //return view('welcome');
     return view('dashboard');
 });
-
-
+Route::get('/rakesh', function () {
+    //return view('welcome');
+    return view('rakesh');
+});
+Route::get('/nishant', function () {
+    //return view('welcome');
+    return view('nishant');
+});
 Route::get('/', function () {
     //return view('welcome');
     return view('frontend/estore');
