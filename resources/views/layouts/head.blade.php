@@ -7,6 +7,8 @@
   <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> -->
  <!-- Include all compiled plugins (below), or include individual files as needed -->
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+ <script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+   
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
@@ -290,8 +292,8 @@
 <!-- AdminLTE App -->
 <script src="{{url('/')}}/assets/dist/js/adminlte.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="{{url('/')}}/assets/dist/js/pages/dashboard.js"></script>
-<!-- AdminLTE for demo purposes -->
+<!-- <script src="{{url('/')}}/assets/dist/js/pages/dashboard.js"></script>
+ --><!-- AdminLTE for demo purposes -->
 <script src="{{url('/')}}/assets/dist/js/demo.js"></script>
 </body>
 </html>

@@ -15,14 +15,7 @@ Route::get('/dashboard', function () {
     //return view('welcome');
     return view('dashboard');
 });
-Route::get('/rakesh', function () {
-    //return view('welcome');
-    return view('rakesh');
-});
-Route::get('/nishant', function () {
-    //return view('welcome');
-    return view('nishant');
-});
+
 Route::get('/', function () {
     //return view('welcome');
     return view('frontend/estore');
@@ -42,12 +35,18 @@ Route::get('/checkout', function () {
 });
 
 //my account page 
-Route::get('/my_account', function () {
-
+Route::get('/my_account', function ()
+{
     return view('frontend/my_account');   
 });
 
 //wishlist page
+
+
+Route::get('/wishlist', function () {
+    return view('frontend/wishlist');
+});
+
 Route::get('/wishlist', function () {
     return view('frontend/wishlist');
 });
@@ -95,8 +94,10 @@ Route::post('/addproduct','ProductController@addproduct');
 Route::get('view-records','UserViewController@index');
 
 
-Route::get('admin/create','StudInsertController@insert');
-Route::post('/create','StudInsertController@create');
+Route::get('student','StudInsertController@insert');
+Route::post('student','StudInsertController@create');
+
+
 
 Auth::routes();
 
@@ -106,7 +107,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/delete/{id}','StudInsertController@destroy');
 Route::get('/cart','ProductController@productview');
 
-Route::get('/product_list','ProductController@allproductview');
+// Route::get('/product_list','ProductController@allproductview');
 
 //image upload routes
 Route::get('image-upload', 'ImageUploadController@imageUpload');
@@ -130,6 +131,18 @@ Route::get('login/{provider}', 'SocialController@redirect');
 Route::get('login/{provider}/callback','SocialController@Callback');
 
 //multiple image upload test FileController create  store
-  
+
 Route::get('file', 'FileController@create'); 
 Route::post('file','FileController@store');
+
+
+
+
+
+Route::middleware('auth:web', 'throttle:5,1')->group(function () 
+{
+    Route::get('/product_list','ProductController@allproductview');
+    //echo "limit aceess";
+    return redirect()->back()->withInput()->with('error','Too Many Attempts. Please try after ');
+   
+});

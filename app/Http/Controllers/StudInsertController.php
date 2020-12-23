@@ -14,8 +14,10 @@ class StudInsertController extends Controller
 
 		return view('admin/stud_create');
 	}
-	public function create(Request $request){
 
+
+
+	public function create(Request $request){
 			//dd($request->all());
 		$create=new StudInsert;
 		$create->first_name=$request->first_name;
@@ -23,19 +25,20 @@ class StudInsertController extends Controller
 		$create->city_name=$request->city_name;
 		$create->email=$request->email;
 
-		$imageName = $request->image->getClientOriginalName();
-		$request->image->move(public_path('images'), $imageName);
-
-
-		$create->image=$imageName;
-		
-
-
-		
+		// $imageName = $request->image->getClientOriginalName();
+		// $request->image->move(public_path('images'), $imageName);
+		//$create->image=$imageName;
 		
 		$create->save();
+		return response()->json(
+            [
+                'success' => 1,
+                'message' => 'Data inserted successfully '
+            ]
+        );
+		//echo json_encode(array("statusCode"=>200));
 
-		return redirect('admin/create');
+		//return redirect('admin/create');
 
 	}
 	public function destroy($id) {
