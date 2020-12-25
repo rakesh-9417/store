@@ -34,22 +34,24 @@ Route::get('/checkout', function () {
     return view('frontend/checkout');
 });
 
+Route::get('/contact', function () {
+    return view('frontend/contact');
+});
+
 //my account page 
 Route::get('/my_account', function ()
 {
     return view('frontend/my_account');   
 });
 
+
+
 //wishlist page
-
-
 Route::get('/wishlist', function () {
     return view('frontend/wishlist');
 });
 
-Route::get('/wishlist', function () {
-    return view('frontend/wishlist');
-});
+
 
 //Estore Register page
 Route::get('/estore_register', function () {
@@ -57,10 +59,10 @@ Route::get('/estore_register', function () {
 });
 
 //Estore Login Page
-Route::get('/estore_login', function () {
+Route::get('/estore_login', function () 
+{
     return view('frontend/estore_login');
 });
-
 //Estore Contact US Page
 // Route::get('/contact', function () {
 //     return view('frontend/contact');
@@ -91,18 +93,16 @@ Route::post('/addproduct','ProductController@addproduct');
 
 
 
-Route::get('view-records','UserViewController@index');
 
-
-Route::get('student','StudInsertController@insert');
 Route::post('student','StudInsertController@create');
 
-
+Route::get('/product_list','ProductController@allproductview');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/edit/{id}','StudInsertController@edit');
 
 Route::get('/delete/{id}','StudInsertController@destroy');
 Route::get('/cart','ProductController@productview');
@@ -113,17 +113,20 @@ Route::get('/cart','ProductController@productview');
 Route::get('image-upload', 'ImageUploadController@imageUpload');
 Route::post('image-upload', 'ImageUploadController@imageUploadPost')->name('image.upload.post');
 
-Route::get('/greeting', function () {
+Route::get('/greeting', function () 
+{
     return 'Hello World';
-});
+})->middleware('throttle:5,1');
 
 // user protected routes
-Route::group(['middleware' => ['auth', 'user'], 'prefix' => 'user'], function () {
+Route::group(['middleware' => ['auth', 'user'], 'prefix' => 'user'], function () 
+{
     Route::get('/', 'HomeController@index')->name('user_dashboard');
 });
 
 // admin protected routes
-Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin'], function () {
+Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin'], function ()
+{
     Route::get('/', 'HomeController@index')->name('admin_dashboard');
 });
 // sociallite controller route
@@ -134,15 +137,13 @@ Route::get('login/{provider}/callback','SocialController@Callback');
 
 Route::get('file', 'FileController@create'); 
 Route::post('file','FileController@store');
-
-
-
-
-
-Route::middleware('auth:web', 'throttle:5,1')->group(function () 
+  Route::get('student','StudInsertController@insert');
+     
+Route::middleware('throttle:60,1')->group(function () 
 {
-    Route::get('/product_list','ProductController@allproductview');
-    //echo "limit aceess";
-    return redirect()->back()->withInput()->with('error','Too Many Attempts. Please try after ');
-   
+     Route::get('view-records','UserViewController@index');
 });
+
+Route::get('/ajax_upload', 'AjaxUploadController@index');
+
+Route::post('/ajax_upload/action', 'AjaxUploadController@action')->name('ajaxupload.action');

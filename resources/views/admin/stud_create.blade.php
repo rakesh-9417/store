@@ -6,11 +6,11 @@
 -->	
 
 <div class="alert alert-success" role="alert" id="success" style="display:none;">
-    Data Entered Successfully 
-    
-  </div>
-<form method="POST" id="form_id">
-  
+  Data Entered Successfully 
+
+</div>
+<form  id="myform" method="post"  enctype="multipart/form-data">
+
   <input type = "hidden" name = "_token" id="csrf" value = "<?php echo csrf_token(); ?>">
 
   
@@ -30,78 +30,53 @@
     <label for="email">Email:</label>
     <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
   </div>
-  <!-- <div class="form-group">
+  <div class="form-group">
     <label for="imageInput">File input</label>
-    <input data-preview="#preview" class="form-control" name="image" type="file" id="image">
-  </div> -->
+    <input data-preview="#preview" class="form-control image" name="image" type="file" id="image">
+  </div>
   
   <button type="button" class="btn btn-default" id="butsave">Submit</button>
 </form>
 </div>
 <script>
-  $(document).ready(function() {
-     // alert('rakesh');
+  $(document).ready(function() {   
+   $('#butsave').on('click', function() {
+      // event.preventdefault();
 
+      var fd = new FormData();
+      var files = $('#image')[0].files[0];
+      fd.append('image',files);
 
-     $('#butsave').on('click', function() {
+      var formData = new FormData(document.getElementById("myform"));
+      //alert('inside ajax passing variables');
+      $.ajax({          
+        url: "{{ url('student') }}",
+        type: "POST",          
+        data: formData,
+        contentType: false,
+        processData: false,
+        cache: false,
+        success:function(response)
+        {
+          //alert('inside response');
+          if(response.success==1){                  
+            $('#success').show();
+            $('#myform')[0].reset();
+          }else{
+            alert("Error");
+          }
+        },
+        error:function(error)
+        {
+                //console.log(error);
+                alert('something get wrong');
+              } 
+            });
 
-       //event.preventdefault();
-       
-      // alert("inside");
-       var first_name = $('#first_name').val();
-       var last_name = $('#last_name').val();
-       var city_name = $('#city_name').val();
-       var email = $('#email').val();
-       var url = "{{ url('student') }}";
-       var type = "POST";
-        
-         if(first_name!="" && last_name!="" && city_name!="" && email!=""){
-          //alert('hi rakesh');  
-
-          $.ajax({          
-            url: url,
-            type: "POST",          
-            data: {
-
-             _token: $("#csrf").val(),
-             first_name: first_name,
-             last_name: last_name,
-             city_name: city_name,
-             email: email
-           },
-           cache: false,
-
-          //cpanel start code
-          success:function(response){
-           
-
-           if(response.success==1){
-                  //alert(response.message) //Message come from controller
-                  $('#success').show();
-                 
-                   $('#form_id')[0].reset();
-                  //return false;
-                  //window.location = "{{url('student')}}";
-                  
-                  
-                }else{
-                  alert("Error")
-                }
-              },
-              error:function(error){
-                console.log(error)
-              }              
-          //cpanel end here
-
-        });
-        }
-        else{
-          alert('Please fill all the field !');
-        }
-      });
-   });
- </script>
- @endsection
+    });
+ });
+</script>
+@endsection
 
 
 

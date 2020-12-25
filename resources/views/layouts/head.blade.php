@@ -142,9 +142,9 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{url('admin/create')}}" class="nav-link">
+                <a href="{{url('student')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Add Students[Insert Data]</p>
+                  <p>Add Student</p>
                 </a>
               </li>
               <li class="nav-item">
@@ -153,12 +153,12 @@
                   <p>View Users Records</p>
                 </a>
               </li>
-              <li class="nav-item">
+              <!-- <li class="nav-item">
                 <a href="pages/charts/inline.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Inline</p>
                 </a>
-              </li>
+              </li> -->
             </ul>
           </li>
           <li class="nav-item has-treeview">

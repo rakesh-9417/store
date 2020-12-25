@@ -8,9 +8,10 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 class UserViewController extends Controller {
-   public function index() {
-      $users = DB::select('select * from student_details');
-      return view('user_view',['users'=>$users]);
-   }
+	public function index() {
+		//$posts = Blog::all();
+		$users = DB::select('select * from student_details');
+		return view('user_view',['users'=>$users]);
+	}
 }
- 
+
