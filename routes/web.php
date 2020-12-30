@@ -92,9 +92,15 @@ Route::get('admin/product','ProductController@productpageview');
 Route::post('/addproduct','ProductController@addproduct');
 
 
-
-
+Route::get('/product-{id}','ProductController@productshow');
 Route::post('student','StudInsertController@create');
+
+
+
+
+Route::post('/addtocart','CartController@addcart');
+Route::get('/cart_delete/{id}','CartController@Cartdelete');
+
 
 Route::get('/product_list','ProductController@allproductview');
 
@@ -107,7 +113,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/edit/{id}','StudInsertController@edit');
 
 Route::get('/delete/{id}','StudInsertController@destroy');
-Route::get('/cart','ProductController@productview');
+Route::get('/cart','CartController@cartview');
 
 // Route::get('/product_list','ProductController@allproductview');
 

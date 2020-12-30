@@ -67,7 +67,7 @@
 
                         <div class="product-item">
                             <div class="product-title">
-                                <a href="#">{{ $user->prouct_name }}</a>
+                                <a href="product-{{ $user->id }}">{{ $user->prouct_name }}
                                 <div class="ratting">
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star"></i>
@@ -75,21 +75,25 @@
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star"></i>
                                 </div>
+                                </a>
                             </div>
                             <div class="product-image">
-                                <a href="product-detail.html">
-                                   <!--  @php $images = json_decode($user->image,true); @endphp
-                                    @if(is_array($images) && !empty($images))
-                                    @foreach ($images as $image)
-                                    <img src="{{ url('images/'.$image) }}"/>
-                                    <img src="products/{{ $user->image}}" alt="Image" style="height:270px; ">
-                                    @endforeach
-                                    @endif -->
-
+                                <a href="product-{{ $user->id }}">
+                                   
                                     <img src="products/{{ $user->image}}" alt="Image" style="height:270px; ">
                                 </a>
                                 <div class="product-action">
-                                    <a href="#"><i class="fa fa-cart-plus"></i></a>
+                                    <form  action="/addtocart" method ="post" enctype="multipart/form-data">
+                                                <input type = "hidden" name = "_token" id="csrf" value = "<?php echo csrf_token(); ?>">
+
+                                                <input type="hidden" name="product_id" value="{{ $user->id }}">
+                                                <input type="hidden" name="image" value="{{ $user->image }}">
+                                                <input type="hidden" name="prouct_name" value="{{ $user->prouct_name }}">
+                                                <input type="hidden" name="price" value="{{ $user->price }}">
+                                                <button type="submit" class="btn btn-default" id="butsave"><i class="fa fa-shopping-cart"></i></button>
+                                                
+                                                 
+                                            </form>
                                     <a href="#"><i class="fa fa-heart"></i></a>
                                     <a href="#"><i class="fa fa-search"></i></a>
                                 </div>

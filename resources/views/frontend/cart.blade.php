@@ -26,17 +26,12 @@
                                     <th>Product</th>
                                     <th>Price</th>
                                     <th>Quantity</th>
-                                    <th>Total</th>
+                                   
                                     <th>Remove</th>
                                 </tr>
                             </thead>
                             <tbody class="align-middle">
-                                <?php 
-                                //$qty = "1";
-                                ?>
-                                @php
-                                $qty = 1
-                                @endphp
+                                
 
                                 @foreach ($users as $user)
                                
@@ -52,13 +47,12 @@
                                     <td>
                                         <div class="qty">
                                             <button class="btn-minus"><i class="fa fa-minus"></i></button>
-                                            <input type="text" value="{{$qty}}">
+                                            <input type="text" value="1">
                                             <button class="btn-plus"><i class="fa fa-plus"></i></button>
                                         </div>
                                     </td>
-                                   <!--  <td>${{ $user->price * $qty }}</td> -->
-                                     <td>{{$qty}}</td>
-                                    <td><button><i class="fa fa-trash"></i></button></td>
+                                     
+                                    <td><a href="cart_delete/{{$user->id}}"><button><i class="fa fa-trash"></i></button></a></td>
                                 </tr>
 
                             </tbody>

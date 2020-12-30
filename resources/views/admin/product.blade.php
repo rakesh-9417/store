@@ -35,7 +35,7 @@
 
 <div class="form-group ">
   <label for="imageInput">File input</label>  
-  <input type="file" class="form-control" name="image[]"  id="image" multiple>
+  <input type="file" class="form-control" name="image"  id="image" >
 </div>
 
 <button type="submit" class="btn btn-default">Submit</button>

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFilesTable extends Migration
+class Cart extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class CreateFilesTable extends Migration
      */
     public function up()
     {
-        Schema::create('files', function (Blueprint $table) {
+      Schema::create('cart', function (Blueprint $table) {
             $table->bigIncrements('id');
-             $table->string('filenames');
+            $table->string('user_id');
+            $table->string('product_id');
             $table->timestamps();
         });
     }
@@ -26,7 +27,7 @@ class CreateFilesTable extends Migration
      * @return void
      */
     public function down()
-    { 
-        Schema::dropIfExists('files');
+    {
+        Schema::dropIfExists('cart');
     }
 }
