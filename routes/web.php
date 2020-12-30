@@ -102,6 +102,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+
+
 Route::get('/edit/{id}','StudInsertController@edit');
 
 Route::get('/delete/{id}','StudInsertController@destroy');
@@ -147,3 +149,13 @@ Route::middleware('throttle:60,1')->group(function ()
 Route::get('/ajax_upload', 'AjaxUploadController@index');
 
 Route::post('/ajax_upload/action', 'AjaxUploadController@action')->name('ajaxupload.action');
+
+
+// email send via laravel
+Route::get('sendbasicemail','MailController@basic_email');
+Route::get('sendhtmlemail','MailController@html_email');
+Route::get('sendattachmentemail','MailController@attachment_email');
+
+
+Route::get('/sendemail', 'SendEmailController@index');
+Route::post('/sendemail/send', 'SendEmailController@send');

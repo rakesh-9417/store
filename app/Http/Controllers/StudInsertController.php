@@ -44,9 +44,7 @@ class StudInsertController extends Controller
 	public function destroy($id) {
 		//dd($id);
 		DB::delete('delete from student_details where id = ?',[$id]);
-		// echo "Record deleted successfully.";
-		// echo 'Click Here to go back.';
-		//return redirect('view-records');
+		
 		return response()->json(
 			[
 				'success' => 1,

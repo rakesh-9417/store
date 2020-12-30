@@ -1,20 +1,20 @@
 @extends('layouts.head')
 
-@section('content')
+@section('content') 
 
 <form action="/addproduct" method = "post" enctype="multipart/form-data">
 	<input type = "hidden" name = "_token" value = "<?php echo csrf_token(); ?>">
-  <div class="form-group">
+  <!-- <div class="form-group">
 
     <label for="prouct_name">Select category:</label>
-   <!--  <input type="text" class="form-control" id="prouct_name" placeholder="Enter Product Name" name="prouct_name">
-   --> <select class="form-control">
+    <input type="text" class="form-control" id="prouct_name" placeholder="Enter Product Name" name="prouct_name">
+   <select class="form-control">
 
     <option>Select Category</option>
 
   </select>
 
-</div>
+</div> -->
 <div class="form-group">
   <label for="prouct_name">Product Name:</label>
   <input type="text" class="form-control" id="prouct_name" placeholder="Enter Product Name" name="prouct_name">
@@ -35,7 +35,7 @@
 
 <div class="form-group ">
   <label for="imageInput">File input</label>  
-  <input type="file" class="form-control" name="image"  id="image" multiple>
+  <input type="file" class="form-control" name="image[]"  id="image" multiple>
 </div>
 
 <button type="submit" class="btn btn-default">Submit</button>
